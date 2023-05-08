@@ -1,18 +1,22 @@
-import './App.css';
-import Body from './components/Body';
+import "./App.css";
+import Body from "./components/Body";
+import Head from "./components/Head";
+import store from "./utils/store";
+import { Provider } from "react-redux";
 
-import Head from './components/Head';
 function App() {
   return (
-    <div className="">
-    <Head />
-     <Body/>
-    </div>
+    <Provider store={store}>
+      <div>
+        <Head />
+
+        <Body />
+      </div>
+    </Provider>
   );
 }
 
-export default  App;
-
+export default App;
 
 /********
  * header
@@ -21,5 +25,5 @@ export default  App;
  *   -MainContainer:-
  *       - TrendingTags
  *       -cards
- *          
+ *
  */
