@@ -11,7 +11,7 @@ const SideBar = () => {
   if(!isVisible) return null;
   else
   return (
-    <div className="grid grid-flow-row col-span-1 shadow-md mr-5">
+    <div className="p-5 w-40 shadow-md mr-5 h-auto relative-fixed">
       <div className="grid grid-flow-row" >
         <button className="m-2 hover:bg-gray-200">Home</button>
         <button  className="m-2  hover:bg-gray-200">Shorts</button>
