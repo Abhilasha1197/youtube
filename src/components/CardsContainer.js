@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { GOOGLE_API } from "../utils/constant";
+import { Link } from "react-router-dom";
 
 const CardsContainer = () => {
-  const [videos, setVideos] = useState([])
+  const [videos, setVideos] = useState([]);
   useEffect(() => {
     fetchVideos();
   }, []);
@@ -16,12 +17,11 @@ const CardsContainer = () => {
   };
   return (
     <div className="flex flex-wrap ml-10">
-      {
-        videos.map((video)=>(
-          <Card key={video.id}  info={video}/>
-        ))
-      }
-    
+      {videos.map((video) => (
+        <Link to={"/watch?v=" + video.id}>
+          <Card key={video.id} info={video} />
+        </Link>
+      ))}
     </div>
   );
 };
