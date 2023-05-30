@@ -12,7 +12,6 @@ const CardsContainer = () => {
   const fetchVideos = async () => {
     const data = await fetch(GOOGLE_API);
     const json = await data.json();
-    console.log(json.items);
     setVideos(json.items);
   };
   return (
