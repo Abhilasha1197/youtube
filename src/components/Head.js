@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSideBar } from "../utils/sideBarSlice";
 import { Link } from "react-router-dom";
 import { YOUTUBE_SEARCH_SUGGESTION_API } from "../utils/constant";
+import store from "../utils/store";
+import { cachedResult } from "../utils/searchSlice";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [isSuggestions, setIsSuggestions] = useState(false);
 
+  const cacheSearch = useSelector(store => store.searc )
+
   useEffect(()=>{
    //make api call at each key strok but decline api call if time between two consequent key stroke is less than 200ms.
-  const timer = setTimeout(() =>getSearchSuggestions(),200)
+  const timer = setTimeout(() =>{
+    if(cacheSearch[searchQuery]){
+      setSuggestions(cacheSearch[searchQuery]); 
+    }else{
+      getSearchSuggestions()
+    }
+  }
+  ,200)
 
   /*at every key stroke a new timer is created and if time gap is less than 200ms then in return() the clearTimeout is 
   called and timer is destryed b4 api is called*/
@@ -20,13 +31,18 @@ const Head = () => {
   }
   },[searchQuery])
 
-//h-10 w-1/2 rounded-s-full border-solid border-2 border-black
-//outline outline-1 rounded-e-full w-10 bg-gray-100
+
   const getSearchSuggestions = async () =>{
     const data = await fetch(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
     const json = await data.json();
     console.log(json[1]);
     setSuggestions(json[1]);
+
+    dispatch(
+      cachedResult({
+      [searchQuery] : json[1]
+    }
+    ))
   }
   const dispatch = useDispatch();
 
