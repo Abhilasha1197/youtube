@@ -11,7 +11,7 @@ const Head = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [isSuggestions, setIsSuggestions] = useState(false);
 
-  const cacheSearch = useSelector(store => store.searc )
+  const cacheSearch = useSelector(store => store.search)
 
   useEffect(()=>{
    //make api call at each key strok but decline api call if time between two consequent key stroke is less than 200ms.
@@ -50,7 +50,7 @@ const Head = () => {
     dispatch(toggleSideBar());
   };
   return (
-    <div className="sticky top-0 overflow-hidden grid grid-flow-col p-5 shadow-lg">
+    <div className="sticky top-0 bg-zinc-50 grid grid-flow-col p-3 shadow-md">
       <div className="flex col-span-2">
         <img
           onClick={() => toggleSideBarHandler()}
@@ -96,17 +96,17 @@ const Head = () => {
       </div>
       <div className="flex col-span-2">
         <img
-          className="h-10 mx-1"
-          alt="notification"
+          className="h-10 mx-3"
+          alt="create"
           src="https://cdn-icons-png.flaticon.com/512/4083/4083832.png"
         />
         <img
-          className="h-10 mx-1"
+          className="h-10 mx-3"
           alt="notification"
           src="https://icon-library.com/images/youtube-bell-icon-png/youtube-bell-icon-png-15.jpg"
         />
         <img
-          className="h-10"
+          className="h-10 mx-3"
           alt="user"
           src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
         />

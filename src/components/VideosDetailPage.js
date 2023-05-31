@@ -17,6 +17,7 @@ const VideosDetailPage = () => {
         allowFullScreen
       ></iframe>
     </div>
+    
     <CommentContainer/>
     </div>
   );
